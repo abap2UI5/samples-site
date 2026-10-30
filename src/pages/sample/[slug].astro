@@ -1,0 +1,37 @@
+---
+/* One page per sample: what it is, what it builds and needs, the two things
+ * to do with it (run it in the playground, read it on GitHub) and the class
+ * itself. "Run" is a plain link into the playground with the class's raw
+ * GitHub URL in ?src= - the playground's URL contract, no code of it here. */
+import Page from "../../layouts/Page.astro";
+import { samples, runLink, githubLink, sourceOf, type Sample } from "../../data/catalogue";
+
+export function getStaticPaths() {
+  return samples.map((s) => ({ params: { slug: s.slug }, props: { s } }));
+}
+const { s } = Astro.props as { s: Sample };
+const base = import.meta.env.BASE_URL;
+const code = sourceOf(s);
+---
+<Page title={`${s.title} - abap2UI5 sample`} description={s.summary || s.note || s.title}>
+<div class="wrap sample">
+  <p class="crumbs"><a href={base}>Samples</a> / <a href={`${base}#${s.source}`}>{s.source_?.title}</a>{s.group && <> / {s.group}</>}</p>
+  <h1>{s.title}</h1>
+  {(s.summary || s.note) && <p class="lede">{s.summary || s.note}</p>}
+  <div class="actions">
+    <a class="btn btn-primary" href={runLink(s)} target="_blank" rel="noopener">{s.runs ? "Run in the playground ↗" : "Open in the playground ↗"}</a>
+    <a class="btn btn-outline" href={githubLink(s)} target="_blank" rel="noopener">Source on GitHub ↗</a>
+  </div>
+  <dl class="facts">
+    <dt>Class</dt><dd><code>{s.class.toLowerCase()}</code></dd>
+    <dt>Repository</dt><dd>{s.repo}</dd>
+    {s.entity && <><dt>Ports</dt><dd><code>{s.sample || s.entity}</code></dd></>}
+    {s.libraries?.length ? <><dt>UI5 libraries</dt><dd>{s.libraries.join(", ")}</dd></> : null}
+    {s.minUi5 && <><dt>Lowest UI5 release</dt><dd>{s.minUi5}</dd></>}
+    <dt>In the browser</dt><dd>{s.runs ? "Runs in the playground" : "Needs a system - opens in the playground for reading"}</dd>
+    {s.controlNames.length ? <><dt>Controls it builds</dt><dd>{s.controlNames.join(", ")}</dd></> : null}
+    {s.docs?.length ? <><dt>Documentation</dt><dd>{s.docs.map((d, i) => <>{i > 0 && ", "}<a href={d} target="_blank" rel="noopener">{d.replace(/^https:\/\/abap2ui5\.github\.io\/docs\//, "").replace(/\.html$/, "")} ↗</a></>)}</dd></> : null}
+  </dl>
+  {code && <section class="source"><h2>The class</h2><pre><code>{code}</code></pre></section>}
+</div>
+</Page>

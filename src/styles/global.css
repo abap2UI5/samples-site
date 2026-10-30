@@ -1,0 +1,176 @@
+/* The abap2UI5 sample catalogue - the one stylesheet, after CONVENTION.md in
+ * abap2UI5/abap2UI5.github.io: ink and white, Inter, the brand red of the logo for the
+ * hover of a tile and for a link. Light and dark follow the reader's system.
+ * Nothing that needs a script. */
+
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("../fonts/inter-roman-latin.woff2") format("woff2");
+}
+
+:root {
+  --brand: #d03c4a;
+  --brand-strong: #b02e3b;
+  --brand-soft: #fdecee;
+  --ink: #0f172a;
+  --text: #1e293b;
+  --muted: #5b6474;
+  --line: #e2e6ec;
+  --bg: #ffffff;
+  --card: #ffffff;
+  --shadow: 0 1px 2px rgba(15, 23, 42, .06), 0 8px 24px rgba(15, 23, 42, .06);
+  --width: 820px;
+  --font: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --brand: #f0606d;
+    --brand-strong: #ff7a86;
+    --brand-soft: #3a1d22;
+    --ink: #f1f4f9;
+    --text: #d8dee8;
+    --muted: #9aa4b5;
+    --line: #273042;
+    --bg: #0f1522;
+    --card: #172033;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 8px 24px rgba(0, 0, 0, .25);
+  }
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--bg); color: var(--text);
+  min-height: 100vh; display: flex; flex-direction: column;
+  font: 16px/1.6 var(--font); font-feature-settings: "cv11", "ss01";
+  overflow-wrap: break-word;
+}
+a { color: var(--brand); text-underline-offset: 3px; }
+a:hover { color: var(--brand-strong); }
+img { max-width: 100%; height: auto; }
+:focus-visible { outline: 3px solid var(--brand); outline-offset: 2px; border-radius: 4px; }
+
+.wrap { max-width: var(--width); margin: 0 auto; padding: 0 24px; }
+@media (max-width: 620px) { .wrap { padding: 0 16px; } }
+
+/* ---- the top line: the wordmark, the two sites as tabs ------------------- */
+.topline { display: flex; align-items: center; justify-content: space-between; gap: 18px; width: 100%; margin: 0 auto; padding-top: 18px; font-size: 13.5px; }
+.topline a { color: var(--muted); text-decoration: none; font-weight: 500; }
+.topline a:hover { color: var(--brand); }
+.sites { display: flex; align-items: center; gap: 16px; }
+.sites .brand { color: var(--ink); font-weight: 700; letter-spacing: -.01em; margin-right: 6px; }
+.sites a[aria-current="page"] { color: var(--ink); font-weight: 600; border-bottom: 2px solid var(--brand); padding-bottom: 1px; }
+
+/* ---- the greeting -------------------------------------------------------- */
+.welcome {
+  display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+  margin: 28px 0 40px; color: var(--ink);
+  font-size: clamp(28px, 4vw, 40px); font-weight: 700; letter-spacing: -.025em; line-height: 1.15;
+}
+.welcome img { width: 40px; height: 40px; flex: none; }
+@media (max-width: 620px) { .welcome { margin: 24px 0 28px; } }
+
+/* ---- the groups: a label, two tiles to a row at most --------------------- */
+/* the page is one reading column (--width); in it the tiles fall into two
+ * columns at most, one on a phone */
+.group { margin: 0 0 36px; }
+.group h2 { margin: 0 0 12px; font-size: 13px; font-weight: 650; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.tiles { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: 12px; }
+.tiles li { min-width: 0; }
+/* a tile at rest is a fine border and a quiet arrow in the corner; on hover
+ * it lifts and the border and the arrow turn to the brand colour */
+.tile {
+  position: relative; display: grid; gap: 4px; align-content: start; height: 100%;
+  padding: 14px 40px 14px 16px; border: 1px solid var(--line); border-radius: 12px; background: var(--card);
+  color: var(--text); text-decoration: none;
+  transition: border-color .15s, box-shadow .15s, transform .15s;
+}
+.tile::after { content: "↗"; position: absolute; top: 12px; right: 14px; font-size: 16px; color: var(--muted); opacity: .6; transition: color .15s, opacity .15s, transform .15s; }
+.tile:hover { color: var(--text); border-color: var(--brand); box-shadow: var(--shadow); transform: translateY(-2px); }
+/* keyboard focus lies on the tile itself, not as a ring beside it - the
+ * browser also restores it after "back", where a ring looks like a fault */
+.tile:focus-visible, .links a:focus-visible { outline: none; border-color: var(--brand); box-shadow: 0 0 0 3px var(--brand-soft); }
+.tile:hover::after, .tile:focus-visible::after { color: var(--brand); opacity: 1; transform: translate(2px, -2px); }
+/* a tile to the sister site stays in this tab: a straight arrow */
+.tile.inside::after { content: "→"; }
+.tile.inside:hover::after, .tile.inside:focus-visible::after { transform: translateX(3px); }
+.tile strong { color: var(--ink); font-size: 16px; font-weight: 600; letter-spacing: -.01em; }
+/* who a tile is for, above its title */
+.tile .for { font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--brand); }
+.tile .text { font-size: 14px; line-height: 1.5; color: var(--muted); display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-clamp: 2; overflow: hidden; }
+/* the community: a row of small tiles - the border, the radius and the hover
+ * of the big ones, the platform mark before the name, no text */
+.links { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, 140px); gap: 12px; }
+.links li { min-width: 0; }
+.links a {
+  display: flex; align-items: center; gap: 9px; padding: 10px 16px;
+  border: 1px solid var(--line); border-radius: 12px; background: var(--card);
+  color: var(--ink); font-size: 15px; font-weight: 600; text-decoration: none;
+  transition: border-color .15s, box-shadow .15s, transform .15s;
+}
+.links a:hover { color: var(--ink); border-color: var(--brand); box-shadow: var(--shadow); transform: translateY(-2px); }
+.links .mark { width: 18px; height: 18px; flex: none; color: var(--muted); }
+.links a:hover .mark { color: var(--brand); }
+@media (prefers-reduced-motion: reduce) { .tile, .tile::after, .links a { transition: none; } .tile:hover, .links a:hover { transform: none; } }
+
+/* ---- the foot: at the bottom of the window, however short the page ---- */
+main { flex: 1 0 auto; }
+.foot { border-top: 1px solid var(--line); margin-top: 24px; padding: 20px 0 36px; font-size: 13px; color: var(--muted); }
+.foot a { color: var(--muted); text-decoration: none; }
+.foot a:hover { color: var(--brand); }
+
+/* ---- the top line: the logo and the word lead home, then the sections --- */
+.topline { display: flex; align-items: center; gap: 18px; width: 100%; margin: 0 auto; padding-top: 18px; font-size: 13.5px; }
+.topline a { color: var(--muted); text-decoration: none; font-weight: 500; }
+.topline a:hover { color: var(--brand); }
+.topline .brand { display: inline-flex; align-items: center; gap: 8px; color: var(--ink); font-weight: 700; letter-spacing: -.01em; margin-right: 6px; }
+.topline .brand img { width: 22px; height: 22px; }
+.topline a[aria-current="page"] { color: var(--ink); font-weight: 600; border-bottom: 2px solid var(--brand); padding-bottom: 1px; }
+.welcome { margin-top: 28px; }
+
+/* ---- the tiles of the catalogue: title, note, a row of badges ----------- */
+.tiles .tile { display: flex; flex-direction: column; }
+.tile .badges { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; padding-top: 10px; }
+.tile.inside::after { content: "→"; }
+.badge { display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px; border-radius: 999px; font-size: 11.5px; font-weight: 600; line-height: 1.5; white-space: nowrap; background: var(--line); color: var(--muted); }
+.badge.runs { background: #e2f6ea; color: #17723f; }
+.badge.ui5 { background: #e3efff; color: #1f5bb5; }
+@media (prefers-color-scheme: dark) { .badge.runs { background: #12301f; color: #6fd69a; } .badge.ui5 { background: #16294a; color: #8db8ff; } }
+.group p.lead { margin: -4px 0 12px; max-width: 70ch; color: var(--muted); font-size: 14px; }
+
+/* ---- the search: a field, a row of switches, a count -------------------- */
+.finder { display: grid; gap: 12px; margin: -12px 0 28px; }
+.finder-q { width: 100%; padding: 11px 14px; border: 1px solid var(--line); border-radius: 12px; background: var(--card); font: inherit; font-size: 15px; color: var(--ink); }
+.finder-q:focus, .finder select:focus { outline: none; border-color: var(--brand); box-shadow: 0 0 0 3px var(--brand-soft); }
+.finder-row { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; }
+.finder label { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--muted); }
+.finder select { padding: 5px 8px; border: 1px solid var(--line); border-radius: 8px; background: var(--card); font: inherit; font-size: 13px; color: var(--ink); }
+.finder input[type=checkbox] { accent-color: var(--brand); }
+.finder-count { margin: 0 0 0 auto; font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.finder-count strong { color: var(--ink); }
+.source-head { margin: 8px 0 18px; padding-top: 18px; border-top: 1px solid var(--line); }
+.source-head h2 { margin: 0; font-size: 22px; color: var(--ink); letter-spacing: -.015em; }
+.source-head p { margin: 4px 0 0; color: var(--muted); font-size: 14px; }
+
+/* ---- a sample page ------------------------------------------------------ */
+.crumbs { margin: 24px 0 6px; font-size: 13px; color: var(--muted); }
+.crumbs a { color: var(--muted); }
+.sample h1 { margin: 0; font-size: clamp(26px, 3.4vw, 34px); color: var(--ink); letter-spacing: -.02em; line-height: 1.2; }
+.sample .lede { margin: 10px 0 0; max-width: 64ch; font-size: 17px; color: var(--muted); }
+.actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 20px 0 8px; }
+.btn { display: inline-block; padding: 0 16px; border-radius: 10px; font-weight: 600; font-size: 14.5px; line-height: 40px; text-decoration: none; white-space: nowrap; }
+.btn-primary { background: var(--brand); color: #fff; }
+.btn-primary:hover { background: var(--brand-strong); color: #fff; }
+.btn-outline { border: 1px solid var(--line); color: var(--ink); background: var(--card); }
+.btn-outline:hover { border-color: var(--brand); color: var(--brand); }
+.facts { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 6px 18px; margin: 24px 0; font-size: 14px; }
+.facts dt { color: var(--muted); }
+.facts dd { margin: 0; color: var(--text); overflow-wrap: anywhere; }
+.facts code, .source code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+.source { margin: 8px 0 40px; }
+.source h2 { margin: 0 0 10px; font-size: 13px; font-weight: 650; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.source pre { margin: 0; padding: 14px 16px; border: 1px solid var(--line); border-radius: 12px; background: var(--card); overflow-x: auto; font-size: 12.5px; line-height: 1.55; }

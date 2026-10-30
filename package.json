@@ -1,0 +1,17 @@
+{
+  "name": "abap2ui5-samples-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Every abap2UI5 sample, searchable, with a page per sample",
+  "license": "MIT",
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "data": "node scripts/fetch-data.mjs",
+    "dev": "astro dev",
+    "build": "astro build",
+    "test": "node --test test/*.test.mjs",
+    "check": "npm run data && npm run build && npm test"
+  },
+  "devDependencies": { "astro": "7.3.8" }
+}

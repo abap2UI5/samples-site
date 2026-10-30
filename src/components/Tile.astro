@@ -1,0 +1,21 @@
+---
+/* One sample on the catalogue: title, note and badges; leads to its page on
+ * this site (same tab, straight arrow). The data attributes are what
+ * public/filter.js searches and filters on. */
+import type { Sample } from "../data/catalogue";
+interface Props { s: Sample }
+const { s } = Astro.props;
+const base = import.meta.env.BASE_URL;
+const words = [s.title, s.class, s.note, s.summary, s.group, s.entity, ...(s.keywords ?? []), ...s.controlNames].filter(Boolean).join(" ").toLowerCase();
+---
+<li data-source={s.source} data-libs={(s.libraries ?? []).join(" ")} data-min={s.minUi5 ?? ""} data-runs={s.runs ? "1" : undefined} data-words={words}>
+  <a class="tile inside" href={`${base}sample/${s.slug}/`}>
+    <strong>{s.title}</strong>
+    <span class="text">{s.note || s.summary}</span>
+    <span class="badges">
+      {s.runs && <span class="badge runs">Runs in the browser</span>}
+      {s.minUi5 && <span class="badge ui5">UI5 {s.minUi5}+</span>}
+      <span class="badge">{s.class.toLowerCase()}</span>
+    </span>
+  </a>
+</li>
