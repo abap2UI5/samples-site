@@ -7,6 +7,8 @@
  * a file of this origin; no inline script, no handler attribute, nothing
  * loaded from another origin. test/site.test.mjs holds every page to it. */
 import "../styles/global.css";
+import { latestRelease } from "../data/release";
+const release = await latestRelease();
 
 interface Props { title: string; description: string }
 const { title, description } = Astro.props;
@@ -41,7 +43,10 @@ const CSP = ["default-src 'self'", "script-src 'self'", "style-src 'self'", "img
 </main>
 <footer class="foot">
   <div class="wrap">
-    <span>abap2UI5 samples · MIT licensed · <a href="mailto:contact@abap2UI5.org">contact@abap2UI5.org</a> · <a href="https://github.com/abap2UI5/samples-site">Edit this site</a></span>
+    <div class="foot-row">
+      <span>abap2UI5 · open source since 2023 · MIT licensed{release && <> · <a href={`https://github.com/abap2UI5/abap2UI5/releases/tag/${release}`}>release {release}</a></>}</span>
+      <span>No cookies, no tracking · <a href="mailto:contact@abap2UI5.org">contact@abap2UI5.org</a> · <a href="https://abap2ui5.github.io/">Home</a> · <a href="https://github.com/abap2UI5/samples-site">Edit this page</a></span>
+    </div>
   </div>
 </footer>
 </body>
