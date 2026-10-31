@@ -13,9 +13,8 @@ const { s } = Astro.props as { s: Sample };
 const base = import.meta.env.BASE_URL;
 const code = sourceOf(s);
 ---
-<Page title={`${s.title} - abap2UI5 sample`} description={s.summary || s.note || s.title}>
+<Page title={`${s.title} - abap2UI5 sample`} description={s.summary || s.note || s.title} trail={[{ text: s.source_?.title ?? "", href: `${base}#${s.source}` }, ...(s.group ? [{ text: s.group }] : [])]}>
 <div class="wrap sample">
-  <p class="crumbs"><a href={base}>Samples</a> / <a href={`${base}#${s.source}`}>{s.source_?.title}</a>{s.group && <> / {s.group}</>}</p>
   <h1>{s.title}</h1>
   {(s.summary || s.note) && <p class="lede">{s.summary || s.note}</p>}
   <div class="actions">
