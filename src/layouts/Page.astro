@@ -32,11 +32,12 @@ const CSP = ["default-src 'self'", "script-src 'self'", "style-src 'self'", "img
 </head>
 <body>
 <div class="topline wrap">
-  <nav class="sites" aria-label="Sites">
+  <nav class="sites" aria-label="Breadcrumb">
     <a class="brand" href="https://abap2ui5.github.io/"><img src={`${base}logo.png`} alt="" width="22" height="22"> abap2UI5</a>
     <a href="https://abap2ui5.github.io/">Home</a>
-    <a href={base} aria-current="page">Samples</a>
-    {trail.map((t) => <span class="trail"><span class="sep" aria-hidden="true">/</span>{t.href ? <a href={t.href}>{t.text}</a> : <span>{t.text}</span>}</span>)}
+    <span class="sep" aria-hidden="true">/</span>
+    {trail.length ? <a href={base}>Samples</a> : <span aria-current="page">Samples</span>}
+    {trail.map((t, i) => <><span class="sep" aria-hidden="true">/</span>{i === trail.length - 1 ? <span aria-current="page">{t.text}</span> : t.href ? <a href={t.href}>{t.text}</a> : <span>{t.text}</span>}</>)}
   </nav>
 </div>
 <main id="main">
