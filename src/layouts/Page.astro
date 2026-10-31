@@ -30,9 +30,14 @@ const CSP = ["default-src 'self'", "script-src 'self'", "style-src 'self'", "img
 </head>
 <body>
 <div class="topline wrap">
-  <a class="brand" href="https://abap2ui5.github.io/"><img src={`${base}logo.png`} alt="" width="22" height="22"> abap2UI5</a>
-  <a href="https://abap2ui5.github.io/">Home</a>
-  <a href={base} aria-current="page">Samples</a>
+  <nav class="sites" aria-label="abap2UI5 sites">
+    <a class="brand" href="https://abap2ui5.github.io/"><img src={`${base}logo.png`} alt="" width="22" height="22"> abap2UI5</a>
+    <a href="https://abap2ui5.github.io/why/">For managers</a>
+    <a href="https://abap2ui5.github.io/docs/">Docs</a>
+    <a href={base} aria-current="page">Samples</a>
+    <a href="https://abap2ui5.github.io/playground/">Playground</a>
+    <a href="https://abap2ui5-addons.github.io/">Addons &amp; Tools</a>
+  </nav>
 </div>
 <main id="main">
   <slot />

@@ -21,6 +21,7 @@ const code = sourceOf(s);
   <div class="actions">
     <a class="btn btn-primary" href={runLink(s)} target="_blank" rel="noopener">{s.runs ? "Run in the playground ↗" : "Open in the playground ↗"}</a>
     <a class="btn btn-outline" href={githubLink(s)} target="_blank" rel="noopener">Source on GitHub ↗</a>
+    {s.docs?.length ? <a class="btn btn-outline" href={s.docs[0]} target="_blank" rel="noopener">Read the chapter ↗</a> : null}
   </div>
   <dl class="facts">
     <dt>Class</dt><dd><code>{s.class.toLowerCase()}</code></dd>
