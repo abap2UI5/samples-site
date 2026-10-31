@@ -120,9 +120,12 @@ img { max-width: 100%; height: auto; }
 /* ---- the foot: at the bottom of the window, however short the page ---- */
 main { flex: 1 0 auto; }
 /* The foot is the same on the home page, the samples and the addons: one
- * muted line under a hairline as wide as the column. */
+ * muted line under a hairline as wide as the column, the mail as a mark at
+ * its right end. */
 .foot { margin-top: 8px; padding-bottom: 12px; font-size: 13px; color: var(--muted); }
-.foot-row { border-top: 1px solid var(--line); padding-top: 8px; }
+.foot-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; border-top: 1px solid var(--line); padding-top: 8px; }
+.foot .mail { display: inline-flex; padding: 2px; }
+.foot .mail svg { width: 18px; height: 18px; }
 .foot a { color: var(--muted); text-decoration: none; }
 .foot a:hover { color: var(--brand); }
 
@@ -157,9 +160,9 @@ main { flex: 1 0 auto; }
 .source-head p { margin: 4px 0 0; color: var(--muted); font-size: 14px; }
 
 /* ---- a sample page ------------------------------------------------------ */
-.crumbs { margin: 24px 0 6px; font-size: 13px; color: var(--muted); }
-.crumbs a { color: var(--muted); }
-.sample h1 { margin: 0; font-size: clamp(26px, 3.4vw, 34px); color: var(--ink); letter-spacing: -.02em; line-height: 1.2; }
+.topline .trail { display: inline-flex; align-items: center; gap: 10px; color: var(--muted); font-weight: 500; }
+.topline .trail .sep { color: var(--line); margin-left: -6px; }
+.sample h1 { margin: 28px 0 0; font-size: clamp(26px, 3.4vw, 34px); color: var(--ink); letter-spacing: -.02em; line-height: 1.2; }
 .sample .lede { margin: 10px 0 0; max-width: 64ch; font-size: 17px; color: var(--muted); }
 .actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 20px 0 8px; }
 .btn { display: inline-block; padding: 0 16px; border-radius: 10px; font-weight: 600; font-size: 14.5px; line-height: 40px; text-decoration: none; white-space: nowrap; }
