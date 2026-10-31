@@ -61,7 +61,7 @@ img { max-width: 100%; height: auto; }
 .topline { display: flex; align-items: center; justify-content: space-between; gap: 18px; width: 100%; margin: 0 auto; padding-top: 18px; font-size: 13.5px; }
 .topline a { color: var(--muted); text-decoration: none; font-weight: 500; }
 .topline a:hover { color: var(--brand); }
-.sites { display: flex; align-items: center; gap: 16px; }
+.sites { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 16px; }
 .sites .brand { color: var(--ink); font-weight: 700; letter-spacing: -.01em; margin-right: 6px; }
 .sites a[aria-current="page"] { color: var(--ink); font-weight: 600; border-bottom: 2px solid var(--brand); padding-bottom: 1px; }
 
@@ -123,10 +123,7 @@ main { flex: 1 0 auto; }
 .foot a { color: var(--muted); text-decoration: none; }
 .foot a:hover { color: var(--brand); }
 
-/* ---- the top line: the logo and the word lead home, then the sections --- */
-.topline { display: flex; align-items: center; gap: 18px; width: 100%; margin: 0 auto; padding-top: 18px; font-size: 13.5px; }
-.topline a { color: var(--muted); text-decoration: none; font-weight: 500; }
-.topline a:hover { color: var(--brand); }
+/* ---- the top line: the logo and the word lead home, then the family's five sites --- */
 .topline .brand { display: inline-flex; align-items: center; gap: 8px; color: var(--ink); font-weight: 700; letter-spacing: -.01em; margin-right: 6px; }
 .topline .brand img { width: 22px; height: 22px; }
 .topline a[aria-current="page"] { color: var(--ink); font-weight: 600; border-bottom: 2px solid var(--brand); padding-bottom: 1px; }
