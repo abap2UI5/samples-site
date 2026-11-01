@@ -78,7 +78,7 @@ img { max-width: 100%; height: auto; }
 /* a breadcrumb: the ancestors are muted links, only the last entry - where the reader is - is marked */
 .sites .sep { color: var(--line); }
 .sites .brand { color: var(--ink); font-weight: 700; letter-spacing: -.01em; margin-right: 8px; }
-.sites [aria-current="page"] { color: var(--ink); font-weight: 600; border-bottom: 2px solid var(--brand); padding-bottom: 1px; }
+.sites [aria-current="page"] { color: var(--ink); font-weight: 600; border-bottom: 2px solid var(--brand); padding-bottom: 1px; margin-bottom: -3px; /* the line takes no height: the word stays level with the trail */ }
 
 /* ---- the greeting -------------------------------------------------------- */
 .welcome {
@@ -148,7 +148,7 @@ main { flex: 1 0 auto; }
 /* ---- the top line: the logo and the word lead home, then the family's five sites --- */
 .topline .brand { display: inline-flex; align-items: center; gap: 8px; color: var(--ink); font-weight: 700; letter-spacing: -.01em; margin-right: 8px; }
 .topline .brand img { width: 22px; height: 22px; }
-.topline [aria-current="page"] { color: var(--ink); font-weight: 600; border-bottom: 2px solid var(--brand); padding-bottom: 1px; }
+.topline [aria-current="page"] { color: var(--ink); font-weight: 600; border-bottom: 2px solid var(--brand); padding-bottom: 1px; margin-bottom: -3px; /* the line takes no height: the word stays level with the trail */ }
 
 /* ---- the tiles of the catalogue: title, note, a row of badges ----------- */
 .tiles .tile { display: flex; flex-direction: column; }
