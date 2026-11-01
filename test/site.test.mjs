@@ -42,3 +42,13 @@ test("a sample page runs in the playground by a plain link, and prints its class
   const withCode = pages.filter((slug) => fs.readFileSync(path.join(DIST, "sample", slug, "index.html"), "utf8").includes('<section class="source">')).length;
   assert.ok(withCode > pages.length * 0.9, `${withCode} of ${pages.length} pages print their class`);
 });
+
+test("the class is highlighted by classes, and a comment line stays one comment", () => {
+  const html = fs.readFileSync(path.join(DIST, "sample", pages.find((s) => fs.readFileSync(path.join(DIST, "sample", s, "index.html"), "utf8").includes('<section class="source">')), "index.html"), "utf8");
+  assert.match(html, /<pre class="language-abap"><code class="language-abap"><span class="token /, "Prism's token spans");
+  assert.match(html, /<span class="token keyword">CLASS<\/span>/, "a keyword");
+  // a quoted name inside a " comment line is not a string of its own
+  for (const m of html.matchAll(/<span class="token line-comment comment">([\s\S]*?)<\/span>/g)) {
+    assert.doesNotMatch(m[1], /<span/, "a token inside a comment line");
+  }
+});
