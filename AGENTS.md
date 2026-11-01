@@ -13,6 +13,7 @@ one of the abap2UI5 family (CONVENTION.md in abap2UI5/abap2UI5.github.io).
 | `src/data/catalogue.ts` | Reads the data: sources, groups, samples, the run and GitHub links |
 | `src/pages/index.astro` | The catalogue: a section per repository, groups inside it, a tile per sample, the search above |
 | `src/pages/sample/[slug].astro` | A page per sample: summary, facts, Run in the playground, Source on GitHub, the class |
+| `src/lib/highlight.ts` | Highlights the class on a sample page at build time with Prism: token classes that `global.css` colours (the colours of abap2UI5 Insights), no style attribute, no script. A `"` comment line is one comment, also when it quotes a name |
 | `src/components/Tile.astro` | One tile, with the data attributes the search reads |
 | `public/filter.js` | The search: words, repository, library, UI5 release, runs in the browser; the only script |
 | `src/layouts/Page.astro`, `src/styles/global.css` | The document and the look, after the family's convention |

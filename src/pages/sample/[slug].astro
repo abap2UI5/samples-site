@@ -5,6 +5,7 @@
  * GitHub URL in ?src= - the playground's URL contract, no code of it here. */
 import Page from "../../layouts/Page.astro";
 import { samples, runLink, githubLink, sourceOf, type Sample } from "../../data/catalogue";
+import { highlightAbap } from "../../lib/highlight";
 
 export function getStaticPaths() {
   return samples.map((s) => ({ params: { slug: s.slug }, props: { s } }));
@@ -32,6 +33,6 @@ const code = sourceOf(s);
     {s.controlNames.length ? <><dt>Controls it builds</dt><dd>{s.controlNames.join(", ")}</dd></> : null}
     {s.docs?.length ? <><dt>Documentation</dt><dd>{s.docs.map((d, i) => <>{i > 0 && ", "}<a href={d} target="_blank" rel="noopener">{d.replace(/^https:\/\/abap2ui5\.github\.io\/docs\//, "").replace(/\.html$/, "")} ↗</a></>)}</dd></> : null}
   </dl>
-  {code && <section class="source"><h2>The class</h2><pre><code>{code}</code></pre></section>}
+  {code && <section class="source"><h2>The class</h2><pre class="language-abap"><code class="language-abap" set:html={highlightAbap(code)} /></pre></section>}
 </div>
 </Page>
