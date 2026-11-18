@@ -13,7 +13,7 @@ import path from "node:path";
 
 const ROOT = path.join(import.meta.dirname, "..");
 const DATA = path.join(ROOT, "src", "data");
-const CATALOGUE = process.env.CATALOGUE_URL ?? "https://abap2ui5.github.io/playground/samples/apps.json";
+const CATALOGUE = process.env.CATALOGUE_URL ?? "https://abap2ui5.github.io/browser-playground/samples/apps.json";
 const CONCURRENCY = 24;
 
 const res = await fetch(CATALOGUE);

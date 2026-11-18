@@ -35,7 +35,7 @@ test("the catalogue: the search is hidden without the script, every source has a
 test("a sample page runs in the playground by a plain link, and prints its class", () => {
   for (const slug of pages.slice(0, 40)) {
     const html = fs.readFileSync(path.join(DIST, "sample", slug, "index.html"), "utf8");
-    assert.match(html, /href="https:\/\/abap2ui5\.github\.io\/playground\/\?src=https%3A%2F%2Fraw\.githubusercontent\.com%2FabapUI5|href="https:\/\/abap2ui5\.github\.io\/playground\/\?src=https%3A%2F%2Fraw\.githubusercontent\.com%2Fabap2UI5%2F/, `${slug}: the run link`);
+    assert.match(html, /href="https:\/\/abap2ui5\.github\.io\/browser-playground\/\?src=https%3A%2F%2Fraw\.githubusercontent\.com%2FabapUI5|href="https:\/\/abap2ui5\.github\.io\/browser-playground\/\?src=https%3A%2F%2Fraw\.githubusercontent\.com%2Fabap2UI5%2F/, `${slug}: the run link`);
     assert.match(html, /<a class="brand" href="https:\/\/abap2ui5\.github\.io\/">/, `${slug}: the way home`);
     policy(html, slug);
   }

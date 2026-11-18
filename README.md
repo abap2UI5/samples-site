@@ -6,7 +6,7 @@ repositories - [samples](https://github.com/abap2UI5/samples),
 [samples-stack](https://github.com/abap2UI5/samples-stack) - searchable by what
 a sample does, by control, library and the UI5 release your system runs, with
 a page per sample that prints its class and runs it in the
-[playground](https://abap2ui5.github.io/playground/).
+[playground](https://abap2ui5.github.io/browser-playground/).
 
 ```bash
 npm ci
