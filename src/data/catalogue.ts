@@ -13,7 +13,7 @@ type Raw = {
 export type Sample = Raw & { slug: string; repo: string; controlNames: string[]; source_: Source };
 
 const apps = JSON.parse(fs.readFileSync("src/data/apps.json", "utf8"));
-export const PLAYGROUND = "https://abap2ui5.github.io/playground/";
+export const PLAYGROUND = "https://abap2ui5.github.io/browser-playground/";
 export const ui5: string = apps.ui5;
 export const releases: string[] = apps.releases ?? [];
 export const sources: Source[] = apps.sources;
